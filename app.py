@@ -4,6 +4,7 @@
 
 import json
 
+import watson.watsonQuery as watson
 from flask import Flask, render_template, request
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
@@ -106,6 +107,16 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
+
+
+# Watson
+
+@app.route("/watson")
+def watson_query():
+    text = request.args.get("text")
+    return watson.query(text)
+
+
 
 # Error handlers.
 
