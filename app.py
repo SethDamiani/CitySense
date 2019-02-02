@@ -4,7 +4,8 @@
 
 import json
 
-import watson.watsonQuery as watson
+import sentiment_analysis.watson as watson
+import sentiment_analysis.word_sense_disambiguation as wsd
 from flask import Flask, render_template, request
 # from flask.ext.sqlalchemy import SQLAlchemy
 import logging
@@ -109,13 +110,17 @@ def forgot():
     return render_template('forms/forgot.html', form=form)
 
 
-# Watson
+#Sentiment Analysis
 
 @app.route("/watson")
 def watson_query():
     text = request.args.get("text")
     return watson.query(text)
 
+@app.route("/wsd")
+def word_sense_disambiguation_query():
+    text = request.args.get("text")
+    return wsd.query(text)
 
 
 # Error handlers.
