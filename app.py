@@ -79,6 +79,7 @@ def home():
     df2 = pd.DataFrame.from_records([ point.to_dict() for point in point_data])
     point_data = df2.to_dict(orient="records")
     point_data = json.dumps(point_data, indent=2)
+    #point_data = [{"count": 100, "lat": 50, "lng": 70}]
     
     data = {'chart_data': chart_data, 'point_data': point_data}
     
